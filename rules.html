@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Játékszabály</title>
+    <link rel="stylesheet"
+        href="lib/bootstrap/bootstrap-5.0.0-beta1-dist/bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <script>
+        closeRules = function () {
+            window.close();
+        }
+    </script>
+    <div class="container">
+        <div class="row">
+            <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
+            <div class="col-10 col-sm-10 col-md-10 col-lg-10" style="background-color:#eeeeee">
+                <div class="row">
+                    <div class="col">
+                        <p><img src="img\labyrinth1.JPG" alt="img1" style="width:250px; float:right; margin:10px;">Az
+                            első
+                            klikkeléssel a
+                            'keresőt' (seeker) helyezi el abban a cellában, amelyre klikkelt. Ott egy smile emotikon
+                            jelenik
+                            meg.
+                            A következő klikkeléssel a 'célt' (target) helyezi el abban a cellában, amelyre klikkelt.
+                            Szintén
+                            egy smile emoticon jelenik meg.</p>
+                            <p>A következő klikkelésekkel pedig egy labirintust építhet fel. Ha egy üres cellára klikkel, akkor az
+                                fekete lesz, s ott a fal egy tégláját helyezte el.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p><img src="img\labyrinth2.JPG" alt="img2" style="width:250px; float:right;margin:10px"> Ha ugyanabban a sorban (vagy oszlopban)
+                            egymás után tesz le két téglát, akkor a két tégla közé automatikusan egy fal épül abban a sorban (vagy
+                            oszlopban).</p>
+                        <p>
+                            Ha a falon ajtót akar nyitni, akkor klikkeljen az adott fekete téglára, s az a klikkelésre
+                            eltűnik onnan, s ott egy átjáró nyílik a falon.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p><img src="img\labyrinth3.JPG" alt="img3" style="width:250px; float:right;margin:10px">A
+                            'bolyongás' gombbal elindítja a seekert-t, s az addig lép véletlenszerűen össze-vissza a
+                            táblán celláról-cellára, amíg meg nem találja a target-et. Azok a cellák, amelyekre rálépett
+                            a seeker, azok pirosak lesznek, s a rajtuk lévő szám jelzi, hogy a seeker a bolyongása során
+                            hányszor érintette az adott cellát.</p>
+                        <p>
+                            Alapértelmezetten az 1. keresési mód van bejelölve a bal oldali sávban. Ekkor a seeker
+                            véletlenszerűen lép bármelyik szomszédos cellába. Ha a 2. keresési módot jelöli be, akkor a
+                            seeker lehetőleg mindig olyan szomszédos cellára lép át, amelyen még nem járt - ha van ilyen
+                            szomszédos cella.
+                        </p>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button onclick="closeRules()" type="button" class="button btn-success">Bezár /
+                                vissza</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
+        </div>
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="lib/bootstrap/bootstrap-5.0.0-beta1-dist/bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/selectors.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="side col-2 col-sm-2 col-md-2 col-lg-2" style="z-index:1">
+                <div id="leftSide">
+                    <span>Ismétlések száma: </span><input oninput="otherInput()" class="mt-2" id="repNumb" type="number"
+                        value="1" style="width:100px">
+                    <hr>
+                    <span>Ennyi lépés után adja fel: </span><input id="giveUpInput" class="mt-2" type="number"
+                        value="1000000" oninput="giveUp()" style="width:100px">
+                    <hr>
+                    <input type="radio" name="mode" id="mode1" checked>
+                    <label for="mode1">1. mód</label>
+                    <input type="radio" name="mode" id="mode2">
+                    <label for="mode2">2. mód</label>
+                    <hr>
+                    bolyongás: <span id="steps"> - </span> lépés.
+                    <br>
+                    eddig <span id="menet"> - </span> menet.
+                    <br>
+                    min: <span id="minSteps"> - </span> lépés
+                    <br>
+                    max: <span id="maxSteps"> - </span> lépés
+                    <br>
+                    átlag: <span id="averageSteps"> - </span> lépés
+                    <br>
+                    <button class=" m-2 button btn-small btn-secondary" onclick="lenullaz()">Lenulláz</button>
+                    <br>
+                    <button class="btn-small btn-primary" onclick="searching()">Bolyongás</button>
+                </div>
+
+            </div>
+            <div class="col-8 col-sm-8 col-md-8 col-lg-8" style="z-index:2">
+                <div class="mt-3">
+                    Tábla: <input type="number" oninput="setTable()" id="sorok" style="width:50px" value="20"><span> sor
+                        X</span>
+                    <input type="number" oninput="setTable()" id="oszlopok" style="width:50px" value="30"><span></span>
+                    oszlop.</span>
+                    <!--<a href="rules.html" target="_blank" class="myButton">JÁTÉKSZABÁLY</a>-->
+                    <button class="myButton" onclick="rulesLink()">JÁTÉKSZABÁLY</button>
+
+                </div>
+
+
+
+                <div class="mt-3">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>Futásidő:</td>
+                                <td><span id="timeSearch"> - </span></td>
+                                <td>Lépések száma:</td>
+                                <td><span id="lepesSzam"> - </span></td>
+                                <td><span id="noSolution" style=color:red></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+
+                <div class="mt-2">
+                    <button class="btn-small btn-primary" onclick="searching()">Bolyongás</button>
+                    <button class="btn-small btn-primary" onclick="showTheWay()">Mutatja az utat</button>
+                    <button disabled class="btn-small btn-primary" id="shortestWay"
+                        onclick="showTheShortestWay()">Mutatja a
+                        'legrövidebb' utat</button>
+                    <button class="btn-small btn-secondary" onclick="newLabyrinth()">Új labirintus építése</button>
+                </div>
+
+                <div class="mt-2" id="divForTable" style="overflow: scroll">
+                    <table class="" id="mainTable">
+                        <tbody id="mainTb"></tbody>
+                    </table>
+                </div>
+
+                <p class="infoText">
+                    A következő táblázat azt mutatja, hogy hány olyan cella van, ahova a seeker csak egyszer lépett,
+                    hány olyan cella, ahová csak kétszer lépett, s így tovább.
+                    Az alatta lévő grafikon ugyanezt szemlélteti oszlopgrafikon formájában. Az első oszlopa annyi
+                    'téglából
+                    áll', ahány olyan cella van ahová a seeker csak egyszer lépett, s így tovább.
+                </p>
+
+                <div class="mt-2" id="divForDistList">
+                    <span id="spanForDistList"></span>
+                </div>
+
+
+                <div class="mt-2 mb-2" id="divForDist">
+                    <table id="tableForDist">
+                        <tbody id="tbodyForDist"></tbody>
+                    </table>
+                </div>
+
+                <p class="infoText">
+                    Beállíthatja a programot úgy is, hogy többször egymás után lefutassa ugyanazt a keresést újra és
+                    újra. Ekkor a következő táblázat azt mutatja meg, hogy az egyes bolyongások hány lépésből álltak. (A
+                    fenti labirintus és táblázatok ilyenkor mindig a sorozat utolsó bolyongásának az eredményét
+                    mutatja.)
+                </p>
+
+                <div class="mt-2">
+                    <span>Az ismétlések száma: </span><input oninput="otherInput2()" class="mt-2" id="repNumb2"
+                        type="number" value="1" style="width:100px"> <button class="btn-small btn-primary"
+                        onclick="searching()">Bolyongás</button>
+                </div>
+
+                <div class="mt-2" id="divForStepList">
+                    <span id="spanForStepList"></span>
+                </div>
+
+                <p class="infoText">
+                    A következőben minden bolyongás után kiszámoljuk az addigi bolyongások összes lépéseinek az átlagát,
+                    s
+                    ezt mutatja ba a táblázat, ill. az oszlopgrafikon.
+                </p>
+
+                <div class="mt-2" id="divForAverageList">
+                    <span id="spanForAverageList"></span>
+                </div>
+
+                <p class="infoText">
+                    Az alábbi grafikon függőleges tengelyének legalacsonyabb értéke <span id="lowest"> - </span>,
+                    legmagasabb értéke pedig <span id="highest"> - </span>.
+                </p>
+
+                <div class="mt-2 mb-2" id="divForAverage">
+                    <table id="tableForAverage">
+                        <tbody id="tbodyForAverage"></tbody>
+                    </table>
+                </div>
+
+
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="z-index:1">
+                <div id="rightSide">
+                    <span class="blue">Bolyongás:</span><span class="info"> a 'seeker' véletlenszerűen lépkedve az
+                        egymással határos
+                        cellákon bejárja a labirintus területét, amíg meg nem találja a 'target'-et. Azok a cellák,
+                        amelyeken áthalad, pirosak lesznek. A cellában szereplő szám jelzi, hogy a 'seeker' a bolyongása
+                        során hányszor érintette az adott cellát.</span>
+                    <span class="blue">Mutatja az utat:</span><span class="info"> A bolyongás során hurkok jönnek létre,
+                        amely során a
+                        'seeker' a hurok végén ugyanabba a csomópontba jut vissza. A gomb ezeket a hurkokat várja le, s
+                        sárga színnel mutatja a bejárt - hurokmentes - utat.</span>
+                    <span class="blue">Mutatja a legrövidebb utat:</span><span class="info"> A további
+                        vargabetűket vágja le, így zöld színnel mutatja a 'seeker' és a 'target' közötti
+                        legrövidebb utat, amelyet a sárgával jelzett cellákból össze tudott rakni.</span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
